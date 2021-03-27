@@ -173,8 +173,10 @@ int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
 */
 
 int	close		args( ( int fd ) );
+/*  Commented as already declared in socket.h
 int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
