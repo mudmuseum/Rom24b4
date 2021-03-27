@@ -864,7 +864,7 @@ void init_descriptor( int control )
     struct sockaddr_in sock;
     struct hostent *from;
     int desc;
-    int size;
+    unsigned int size;
 
     size = sizeof(sock);
     getsockname( control, (struct sockaddr *) &sock, &size );
@@ -2377,17 +2377,15 @@ void show_string(struct descriptor_data *d, char *input)
 	    *scan = '\0';
 	    write_to_buffer(d,buffer,strlen(buffer));
 	    for (chk = d->showstr_point; isspace(*chk); chk++);
-	    {
-		if (!*chk)
-		{
-		    if (d->showstr_head)
-        	    {
+	    //{
+            if (!*chk) {
+		if (d->showstr_head) {
             		free_mem(d->showstr_head,strlen(d->showstr_head));
             		d->showstr_head = 0;
-        	    }
-        	    d->showstr_point  = 0;
-    		}
-	    }
+        	}
+	        d->showstr_point  = 0;
+    	    }
+	    //}
 	    return;
 	}
     }
