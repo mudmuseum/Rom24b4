@@ -1,5 +1,5 @@
 CC      = gcc
-PROF    = -O -g
+PROF    = -O -g -lcrypt
 NOCRYPT =
 C_FLAGS =  -Wall $(PROF) $(NOCRYPT)
 L_FLAGS =  $(PROF)
@@ -16,3 +16,6 @@ rom: $(O_FILES)
 
 .c.o: merc.h
 	$(CC) -c $(C_FLAGS) $<
+
+clean:
+	rm -f $(O_FILES) rom
