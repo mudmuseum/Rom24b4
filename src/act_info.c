@@ -424,8 +424,9 @@ void show_char_to_char_1( CHAR_DATA *victim, CHAR_DATA *ch )
 
     if ( can_see( victim, ch ) )
     {
-	if (ch == victim)
+	if (ch == victim) {
 	    act( "$n looks at $mself.",ch,NULL,NULL,TO_ROOM);
+	}
 	else
 	{
 	    act( "$n looks at you.", ch, NULL, victim, TO_VICT    );
@@ -1129,22 +1130,24 @@ void do_look( CHAR_DATA *ch, char *argument )
 	if ( can_see_obj( ch, obj ) )
 	{  /* player can see object */
 	    pdesc = get_extra_descr( arg3, obj->extra_descr );
-	    if ( pdesc != NULL )
+	    if ( pdesc != NULL ) {
 	    	if (++count == number)
 	    	{
 		    send_to_char( pdesc, ch );
 		    return;
 	    	}
-	    	else continue;
+	    	else continue; 
+	    }
 
  	    pdesc = get_extra_descr( arg3, obj->pIndexData->extra_descr );
- 	    if ( pdesc != NULL )
+ 	    if ( pdesc != NULL ) {
  	    	if (++count == number)
  	    	{	
 		    send_to_char( pdesc, ch );
 		    return;
 	     	}
-		else continue;
+		else continue; 
+	    }
 
 	    if ( is_name( arg3, obj->name ) )
 	    	if (++count == number)
