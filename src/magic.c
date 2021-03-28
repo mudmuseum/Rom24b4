@@ -642,7 +642,7 @@ void obj_cast_spell( int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim, OBJ_DA
 	break;
 
     case TAR_OBJ_CHAR_OFF:
-        if ( victim == NULL && obj == NULL)
+        if ( victim == NULL && obj == NULL) {
 	    if (ch->fighting != NULL)
 		victim = ch->fighting;
 	    else
@@ -650,9 +650,9 @@ void obj_cast_spell( int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim, OBJ_DA
 		send_to_char("You can't do that.\n\r",ch);
 		return;
 	    }
+	}
 
-	    if (victim != NULL)
-	    {
+	if (victim != NULL) {
 		if (is_safe_spell(ch,victim,FALSE) && ch != victim)
 		{
 		    send_to_char("Somehting isn't right...\n\r",ch);
@@ -661,13 +661,12 @@ void obj_cast_spell( int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim, OBJ_DA
 
 		vo = (void *) victim;
 		target = TARGET_CHAR;
-	    }
-	    else
-	    {
+	}
+	else {
 	    	vo = (void *) obj;
 	    	target = TARGET_OBJ;
-	    }
-        break;
+	}
+    break;
 
 
     case TAR_OBJ_CHAR_DEF:
@@ -2184,7 +2183,8 @@ void spell_dispel_magic( int sn, int level, CHAR_DATA *ch, void *vo,int target )
         send_to_char("Ok.\n\r",ch);
     else
         send_to_char("Spell failed.\n\r",ch);
-	return;
+    
+    return;
 }
 
 void spell_earthquake( int sn, int level, CHAR_DATA *ch, void *vo,int target )
@@ -2202,11 +2202,13 @@ void spell_earthquake( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	    continue;
 	if ( vch->in_room == ch->in_room )
 	{
-	    if ( vch != ch && !is_safe_spell(ch,vch,TRUE))
+	    if ( vch != ch && !is_safe_spell(ch,vch,TRUE)) {
 		if (IS_AFFECTED(vch,AFF_FLYING))
 		    damage_old(ch,vch,0,sn,DAM_BASH,TRUE);
 		else
 		    damage_old( ch,vch,level + dice(2, 8), sn, DAM_BASH,TRUE);
+	    }
+
 	    continue;
 	}
 
