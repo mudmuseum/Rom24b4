@@ -10,3 +10,7 @@ Create the following directories:
 - `log`
 - `player`
 - `gods`
+
+# Validatation
+
+Compiled clean with `gcc (GCC) 7.3.1 20180712 (Red Hat 7.3.1-12)`.
