@@ -82,13 +82,10 @@ void	disarm		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void violence_update( void )
 {
     CHAR_DATA *ch;
-    CHAR_DATA *ch_next;
     CHAR_DATA *victim;
 
     for ( ch = char_list; ch != NULL; ch = ch->next )
     {
-	ch_next	= ch->next;
-
 	if ( ( victim = ch->fighting ) == NULL || ch->in_room == NULL )
 	    continue;
 
@@ -583,11 +580,12 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
      else if (victim->position < POS_FIGHTING)
 	dam = dam * 3 / 2;
 
-    if ( dt == gsn_backstab && wield != NULL) 
+    if ( dt == gsn_backstab && wield != NULL) {
     	if ( wield->value[0] != 2 )
 	    dam *= 2 + (ch->level / 10); 
 	else 
 	    dam *= 2 + (ch->level / 8);
+    }
 
     dam += GET_DAMROLL(ch) * UMIN(100,skill) /100;
 
@@ -957,11 +955,12 @@ bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
 		     != NULL)
 	      	    do_get(ch, "all.gcash corpse");
             
-	    if ( IS_SET(ch->act, PLR_AUTOSAC) )
+	    if ( IS_SET(ch->act, PLR_AUTOSAC) ) {
        	      if ( IS_SET(ch->act,PLR_AUTOLOOT) && corpse && corpse->contains)
 		return TRUE;  /* leave if corpse has treasure */
 	      else
 		do_sacrifice( ch, "corpse" );
+	    }
 	}
 
 	return TRUE;
@@ -1273,11 +1272,12 @@ dam_type, bool show ) {
 		!IS_SET(ch->act,PLR_AUTOLOOT))
 	      do_get(ch, "gold corpse");
             
-	    if ( IS_SET(ch->act, PLR_AUTOSAC) )
+	    if ( IS_SET(ch->act, PLR_AUTOSAC) ) {
        	      if ( IS_SET(ch->act,PLR_AUTOLOOT) && corpse && corpse->contains)
 		return TRUE;  /* leave if corpse has treasure */
 	      else
 		do_sacrifice( ch, "corpse" );
+	    }
 	}
 
 	return TRUE;
@@ -2026,7 +2026,6 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 {
     char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
-    CHAR_DATA *lch;
     int xp;
     int members;
     int group_levels;
@@ -2057,8 +2056,6 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	group_levels = ch->level ;
     }
 
-    lch = (ch->leader != NULL) ? ch->leader : ch;
-
     for ( gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room )
     {
 	OBJ_DATA *obj;
@@ -2066,20 +2063,6 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 
 	if ( !is_same_group( gch, ch ) || IS_NPC(gch))
 	    continue;
-
-/*	Taken out, add it back if you want it
-	if ( gch->level - lch->level >= 5 )
-	{
-	    send_to_char( "You are too high for this group.\n\r", gch );
-	    continue;
-	}
-
-	if ( gch->level - lch->level <= -5 )
-	{
-	    send_to_char( "You are too low for this group.\n\r", gch );
-	    continue;
-	}
-*/
 
 	xp = xp_compute( gch, victim, group_levels );  
 	sprintf( buf, "You receive %d experience points.\n\r", xp );
