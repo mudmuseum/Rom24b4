@@ -1,2 +1,4 @@
 **/*.o
 src/rom
+player/*
+log/*
