@@ -1,5 +1,5 @@
 **/*.o
-src/rom
-player/*
-log/*
-gods/*
+rom/src/rom
+rom/player/*
+rom/log/*
+rom/gods/*
