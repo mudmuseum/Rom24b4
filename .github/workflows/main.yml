@@ -30,10 +30,10 @@ jobs:
         run: |
           cd ${GITHUB_WORKSPACE}/
           aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
-          docker build -t rom24b4:${{ github.run_number }}.${{ github.run_id }} .
-          docker tag rom24b4:${{ github.run_number }}.${{ github.run_id }} \
-            ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/rom24b4:${{ github.run_number }}.${{ github.run_id }}
-          docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/rom24b4:${{ github.run_number }}.${{ github.run_id }}
+          docker build -t rom-2.4.b4:${{ github.run_number }}.${{ github.run_id }} .
+          docker tag rom-2.4.b4:${{ github.run_number }}.${{ github.run_id }} \
+            ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/rom-2.4.b4:${{ github.run_number }}.${{ github.run_id }}
+          docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/rom-2.4.b4:${{ github.run_number }}.${{ github.run_id }}
           docker logout ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

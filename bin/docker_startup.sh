@@ -12,7 +12,7 @@ CONTAINER_NAME="rom24b4"
 MUD_DIRECTORY="rom"
 
 # Repository Configuration
-REPOSITORY_NAME="rom24b4"
+REPOSITORY_NAME="rom-2.4.b4"
 
 # Builds the ECR image reference from Account, Region, and Tag
 ACCOUNT=$(aws sts get-caller-identity | jq -r .Account)
