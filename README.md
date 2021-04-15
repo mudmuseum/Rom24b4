@@ -4,13 +4,6 @@
 - Sourced From: http://www.mudbytes.net/files/114/
 - Wikipedia Reference: https://en.wikipedia.org/wiki/DikuMUD
 
-# Setup Steps
-
-Create the following directories:
-- `log`
-- `player`
-- `gods`
-
 # Validatation
 
 Compiled clean with `gcc (GCC) 7.3.1 20180712 (Red Hat 7.3.1-12)`.
